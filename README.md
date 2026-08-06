@@ -7,7 +7,7 @@
 
 AI can write your code, but it can't decide what you're building. That part is
 yours. **Before You Prompt** is a bilingual (English/Spanish) suite of planning
-documents that walks you from "I have an idea" to a complete, buildable spec —
+documents that walks you from "I have an idea" to a complete, buildable spec,
 plus a [Claude Code](https://claude.com/claude-code) skill that generates and
 fills it for you.
 
@@ -52,7 +52,7 @@ Each language tree contains:
 - **WHAT → HOW → RISK → DEEP-DIVES → QUALITY → DELIVERY → UNKNOWNS** ordering.
 - Stable ID spaces (`US-01`/`HU-01`, `OI-01`/`P-01`, `TC-01`/`CP-01`) so every
   document can cross-reference every other.
-- Decisions are resolved **in place with a date**, never deleted — the open-items
+- Decisions are resolved **in place with a date**, never deleted; the open-items
   register doubles as a decision log.
 - Deep-dives only for genuinely hard integrations; a minimal cut
   (README + 01 + 02 + 10) for small projects.
@@ -64,7 +64,7 @@ Each language tree contains:
 ./install.sh
 ```
 
-Or manually — see [INSTALL.md](INSTALL.md). The templates are plain Markdown and
+Or manually: see [INSTALL.md](INSTALL.md). The templates are plain Markdown and
 work without Claude Code; the skill adds `/planning-suite`, which interviews you
 briefly and generates a filled suite in `<project>/docs/planning/`. The installer
 also offers optional Codex CLI and Gemini CLI installs when it detects them.
@@ -73,12 +73,12 @@ also offers optional Codex CLI and Gemini CLI installs when it detects them.
 
 Run `/planning-suite` inside Claude Code in any project. It:
 
-1. **Interviews you briefly** — objective, actors, scope, hard integrations,
-   phases — one question at a time.
-2. **Decides language and cut** — Spanish (`es/`) or English (`en/`) by project
+1. **Interviews you briefly**: objective, actors, scope, hard integrations,
+   phases, one question at a time.
+2. **Decides language and cut**: Spanish (`es/`) or English (`en/`) by project
    language, and minimal cut (README + 01 + 02 + 10) vs full suite by project
    size. It asks when unclear.
-3. **Generates `docs/planning/`** — fills every placeholder from your answers,
+3. **Generates `docs/planning/`**: fills every placeholder from your answers,
    registers every unknown as an open item (`P-xx`/`OI-xx`), and builds the
    README index and traceability matrix last.
 
@@ -99,7 +99,7 @@ A typical session:
   Registered OI-01 (email provider undecided). Review 10-open-items.md first.
 ```
 
-**Manual mode** — no AI required: copy `planning-template/es/` or
+**Manual mode**, no AI required: copy `planning-template/es/` or
 `planning-template/en/` into your project, fill the `{{...}}` placeholders
 following the `<!-- instruction -->` comments, and delete those comments. Start
 with `_GUIA.md` / `_GUIDE.md`.
@@ -135,11 +135,63 @@ Esa parte es tuya. Esta suite bilingüe de documentos de planeación te lleva de
 Claude Code que la genera por ti. Nació de la ingeniería inversa de un handoff
 de requerimientos real que funcionó bien, extendido con lo que suele faltar:
 contratos de API, requisitos no funcionales, seguridad con mapeo OWASP Top 10,
-plan de pruebas, plan de entrega y matriz de trazabilidad.
+plan de pruebas, plan de entrega y matriz de trazabilidad. Llena estos
+documentos primero, entrégaselos a tu IA (o a tu equipo), y cada prompt que
+escribas después sale más afilado.
 
-Instalación: `./install.sh` o ver [INSTALL.md](INSTALL.md). Las plantillas son
-Markdown puro y funcionan sin Claude Code; el skill agrega `/planning-suite`.
-Empieza por `planning-template/es/_GUIA.md`.
+### Qué incluye
+
+```
+planning-template/
+├── es/   13 documentos en español   (empieza en _GUIA.md)
+└── en/   13 documentos en inglés    (empieza en _GUIDE.md)
+skill/planning-suite/               Skill de Claude Code (SKILL.md + assets)
+integrations/                       Codex CLI, Gemini CLI, AGENTS.md, prompt universal
+assets/social/                      Imágenes para compartir (OG card, banner, story)
+INSTALL.md                          Guía de instalación (ES/EN)
+install.sh                          Instalador de un paso (macOS/Linux)
+```
+
+Cada árbol de idioma contiene:
+
+| Doc | Propósito |
+|-----|-----------|
+| `README.md` | Hub: objetivo, alcance, actores, glosario, índice, aprobaciones |
+| `01` Historias de usuario | Plantilla fija con prioridad MoSCoW y criterios Dado/Cuando/Entonces |
+| `02` Especificación técnica | Validación de campos, modelo de datos, flujo de estados, migraciones |
+| `03` Contratos de API | Auth, formato de errores, schemas por endpoint con ejemplo resuelto |
+| `04` Requisitos no funcionales | Performance, SLA, matriz de dispositivos, accesibilidad, observabilidad |
+| `05` Seguridad | Controles por área, registro de riesgo asumido, **mapeo OWASP Top 10 (2021)** |
+| `06` Deep-dives de integraciones | Diff as-is/to-be, catálogo de errores, política de reintentos/idempotencia |
+| `07` Plan de pruebas | Casos ligados a historias, casos negativos obligatorios |
+| `08` Plan de entrega | Fases/corte MVP, ambientes, go-live, rollback |
+| `09` Matriz de trazabilidad | Historia → endpoint → tabla → pantalla → caso de prueba |
+| `10` Pendientes | Registro numerado de decisiones, resueltas en el lugar y con fecha |
+| Prompt de diseño | Prompt ejecutable para generar el prototipo de UI y su handoff |
+
+### Principios de diseño
+
+- Orden **QUÉ → CÓMO → RIESGO → PROFUNDIZACIÓN → CALIDAD → ENTREGA → INCÓGNITAS**.
+- Espacios de IDs estables (`HU-01`/`US-01`, `P-01`/`OI-01`, `CP-01`/`TC-01`) para
+  que cada documento pueda referenciar a los demás.
+- Las decisiones se resuelven **en el lugar y con fecha**, nunca se borran; el
+  registro de pendientes funciona también como bitácora de decisiones.
+- Deep-dives solo para integraciones genuinamente difíciles; corte mínimo
+  (README + 01 + 02 + 10) para proyectos chicos.
+- La seguridad es un documento de primera clase con sección explícita de riesgo
+  asumido.
+
+### Instalación
+
+```bash
+./install.sh
+```
+
+O manual: ver [INSTALL.md](INSTALL.md). Las plantillas son Markdown puro y
+funcionan sin Claude Code; el skill agrega `/planning-suite`, que te entrevista
+brevemente y genera la suite llena en `<proyecto>/docs/planning/`. El instalador
+también ofrece instalar para Codex CLI y Gemini CLI cuando los detecta. Empieza
+por `planning-template/es/_GUIA.md`.
 
 ### Uso
 
@@ -154,9 +206,26 @@ Ejecuta `/planning-suite` dentro de Claude Code en cualquier proyecto. El skill:
    cada incógnita como pendiente (`P-xx`) y construye el índice del README y la
    matriz de trazabilidad al final.
 
+Una sesión típica:
+
+```
+> /planning-suite
+● ¿Cuál es el objetivo del proyecto, en una o dos frases?
+> Una webapp de citas para una clínica dental, los pacientes agendan en línea.
+● ¿Quiénes son los actores? (p. ej. paciente, recepcionista, admin)
+> Pacientes y una recepcionista que confirma las citas.
+● ¿Integraciones externas difíciles (pagos, sistemas legados, SOAP...)?
+> No, solo notificaciones por correo.
+● ¿Fases, o es una sola entrega?
+> Una sola entrega, proyecto chico.
+● Generando corte mínimo (ES): README + 01-historias-de-usuario +
+  02-especificacion-tecnica + 10-pendientes en docs/planning/ ... listo.
+  Registré P-01 (proveedor de correo sin decidir). Revisa 10-pendientes primero.
+```
+
 **Modo manual** (sin IA): copia `planning-template/es/` a tu proyecto, llena los
 marcadores `{{...}}` siguiendo los comentarios `<!-- instrucción -->` y elimina
-esos comentarios.
+esos comentarios. Empieza por `_GUIA.md`.
 
 ### Funciona con cualquier herramienta de IA
 
