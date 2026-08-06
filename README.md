@@ -1,5 +1,7 @@
 # Before You Prompt
 
+![Before You Prompt — plan before you prompt](assets/social/github-social-preview.png)
+
 > A modern planning guide for people who want to build a web project with AI —
 > and have no idea where to start.
 
@@ -23,6 +25,7 @@ planning-template/
 └── en/   13 documents in English   (start at _GUIDE.md)
 skill/planning-suite/               Claude Code skill (SKILL.md + assets)
 integrations/                       Codex CLI, Gemini CLI, AGENTS.md, universal prompt
+assets/social/                      Social/share images (OG card, banner, story)
 INSTALL.md                          Installation guide (ES/EN)
 install.sh                          One-step installer (macOS/Linux)
 ```
