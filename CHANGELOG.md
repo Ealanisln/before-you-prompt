@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2 — 2026-08-05
+
+- Multi-client integrations (`integrations/`): OpenAI Codex CLI (skill +
+  custom prompt), Gemini CLI (TOML custom command), AGENTS.md snippet for
+  Cursor/Zed/Copilot-style tools, and a universal paste-anywhere prompt.
+- `install.sh` now offers optional Codex/Gemini installs when those clients
+  are detected.
+- README: step-by-step usage guide with example session, manual mode, and an
+  AI-tool compatibility table (mirrored in Spanish).
+
 ## 1.1 — 2026-08-05
 
 - Added OWASP Top 10 (2021) mapping table, OWASP API Security Top 10 note, and

@@ -16,9 +16,10 @@ before-you-prompt/
 ├── planning-template/          ← plantillas navegables
 │   ├── es/                     ← 13 documentos en español
 │   └── en/                     ← 13 documentos en inglés
-└── skill/planning-suite/       ← skill de Claude Code
-    ├── SKILL.md
-    └── assets/es|en/           ← copia de las plantillas que usa el skill
+├── skill/planning-suite/       ← skill de Claude Code
+│   ├── SKILL.md
+│   └── assets/es|en/           ← copia de las plantillas que usa el skill
+└── integrations/               ← Codex CLI, Gemini CLI, AGENTS.md, prompt universal
 ```
 
 La suite cubre: historias de usuario, especificación técnica, contratos de API,
@@ -39,7 +40,11 @@ cd before-you-prompt
 ```
 
 Copia el skill a `~/.claude/skills/planning-suite/` y las plantillas a
-`~/planning-template/` (pregunta antes de sobrescribir).
+`~/planning-template/` (pregunta antes de sobrescribir). Si detecta otros
+clientes de IA instalados, ofrece instalaciones opcionales: skill/prompt para
+**OpenAI Codex CLI** (`~/.codex/`) y comando para **Gemini CLI** (`~/.gemini/`).
+Para Cursor/Zed/Copilot y cualquier otra herramienta, ver
+[`integrations/`](integrations/README.md).
 
 ### Instalación manual
 
@@ -86,7 +91,11 @@ open-items register.
 
 ### Install
 
-Automatic (macOS / Linux): `./install.sh`
+Automatic (macOS / Linux): `./install.sh` — installs the Claude Code skill and
+templates, then offers optional installs for **OpenAI Codex CLI** (skill/prompt,
+`~/.codex/`) and **Gemini CLI** (custom command, `~/.gemini/`) when detected.
+For Cursor/Zed/Copilot and any other tool, see
+[`integrations/`](integrations/README.md).
 
 Manual:
 
